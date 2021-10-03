@@ -1,0 +1,195 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<BorderPane fx:controller="magniflyer.gui.MainController"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@style.css">
+    <top>
+        <ToolBar>
+            <padding>
+                <Insets right="20"/>
+            </padding>
+            <ImageView preserveRatio="true" fitWidth="300">
+                <Image url="@/media/Magniflyer_Logo.png"/>
+            </ImageView>
+            <Pane minWidth="20"/>
+            <Label text="Flights" onMouseClicked="#switchToFindFlights"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="logInRegister" text="Log In/Register" onMouseClicked="#switchToRegister"/>
+            <Label fx:id="viewAccount" visible="false" managed="false" onMouseClicked="#switchToViewAccount"/>
+        </ToolBar>
+    </top>
+    <center>
+        <StackPane>
+
+            <VBox fx:id="registerPane" spacing="10" alignment="CENTER" maxWidth="700" visible="false">
+                <Label fx:id="registerHeader" text="Sign up for Magniflyer" alignment="CENTER" minWidth="700"/>
+                <HBox spacing="10" minWidth="700" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="10"/>
+                    </padding>
+                    <Label text="First Name:"/>
+                    <TextField fx:id="firstNameRegister"/>
+                    <Label text="M.I"/>
+                    <TextField fx:id="middleInitialRegister" maxWidth="40"/>
+                    <Label text="Last Name:"/>
+                    <TextField fx:id="lastNameRegister"/>
+                </HBox>
+                <HBox spacing="10" minWidth="700" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="10"/>
+                    </padding>
+                    <Label text="E-mail Address" minWidth="200"/>
+                    <TextField fx:id="emailRegister" minWidth="490"/>
+                </HBox>
+                <HBox spacing="10" minWidth="700" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="10"/>
+                    </padding>
+                    <Label text="Create Password" minWidth="200"/>
+                    <PasswordField fx:id="passwordRegister" minWidth="380"/>
+                    <TextField fx:id="passwordUnmaskedRegister" minWidth="380" visible="false" managed="false"/>
+                    <CheckBox fx:id="checkboxRegister" text="See Password" minWidth="100"/>
+                </HBox>
+                <HBox spacing="10" minWidth="700" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="10"/>
+                    </padding>
+                    <Label text="Confirm Password" minWidth="200"/>
+                    <PasswordField fx:id="passwordConfirmRegister" minWidth="490"/>
+                </HBox>
+                <HBox spacing="10" minWidth="700" alignment="CENTER">
+                    <padding>
+                        <Insets top="10"/>
+                    </padding>
+                    <CheckBox fx:id="acceptTC" text="I Accept The Terms and Conditions..."
+                              GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                              alignment="CENTER"/>
+                </HBox>
+                <GridPane minWidth="700" hgap="10" vgap="10" alignment="CENTER">
+                    <padding>
+                        <Insets top="10"/>
+                    </padding>
+                    <Label fx:id="statusLabelRegister" GridPane.rowIndex="0" minWidth="700" alignment="CENTER"/>
+                    <Button text="Register" GridPane.rowIndex="1" GridPane.columnIndex="0" minWidth="700" minHeight="50"
+                            onAction="#handleRegister"/>
+                    <Label fx:id="signInInstead" text="Click here to sign in"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"
+                           minWidth="700" alignment="CENTER" onMouseClicked="#switchToSignIn"/>
+                </GridPane>
+            </VBox>
+
+            <VBox fx:id="signInPane" spacing="10" alignment="CENTER" maxWidth="500" visible="false">
+                <Label fx:id="signInHeader" text="Sign in with an existing account" alignment="CENTER" minWidth="500"/>
+                <HBox spacing="10" minWidth="500" alignment="CENTER">
+                    <padding>
+                        <Insets top="10"/>
+                    </padding>
+                    <Label text="Enter E-mail" minWidth="200"/>
+                    <TextField fx:id="emailSignIn" minWidth="290"/>
+                </HBox>
+                <HBox spacing="10" minWidth="500" alignment="CENTER">
+                    <padding>
+                        <Insets top="10"/>
+                    </padding>
+                    <Label text="Enter Password" minWidth="200"/>
+                    <PasswordField fx:id="passwordSignIn" minWidth="80"/>
+                    <TextField fx:id="passwordUnmaskedSignIn" minWidth="80" visible="false" managed="false"/>
+                    <CheckBox fx:id="checkboxSignIn" text="See Password" minWidth="100"/>
+                </HBox>
+                <GridPane minWidth="500" hgap="10" vgap="10" alignment="CENTER">
+                    <padding>
+                        <Insets top="20"/>
+                    </padding>
+                    <Label fx:id="statusLabelSignIn" GridPane.rowIndex="0" minWidth="500" alignment="CENTER"/>
+                    <Button text="Sign In" GridPane.rowIndex="1" GridPane.columnIndex="0" minWidth="500" minHeight="50"
+                            onAction="#handleSignIn" alignment="CENTER"/>
+                    <Label fx:id="registerInstead" text="Click here to register"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0" minWidth="500" alignment="CENTER"
+                           onMouseClicked="#switchToRegister"/>
+                </GridPane>
+            </VBox>
+
+            <VBox fx:id="findFlightsPane" spacing="10" alignment="TOP_CENTER" visible="false">
+                <HBox style="-fx-background-color: rgb(24, 51, 105);" alignment="CENTER">
+                    <ImageView preserveRatio="true" fitWidth="600">
+                        <Image url="@/media/Flights_Banner.jpg"/>
+                    </ImageView>
+                </HBox>
+                <Pane minHeight="50"/>
+                <HBox alignment="CENTER" spacing="20">
+                    <padding>
+                        <Insets top="20"/>
+                    </padding>
+                    <ImageView preserveRatio="true" fitWidth="50">
+                        <Image url="@/media/Departure.jpg"/>
+                    </ImageView>
+                    <Label text="DEPARTURE"/>
+                    <TextField fx:id="departureTextField"/>
+                    <DatePicker fx:id="departureDatePicker"/>
+                </HBox>
+                <HBox alignment="CENTER" spacing="20">
+                    <padding>
+                        <Insets top="20"/>
+                    </padding>
+                    <ImageView preserveRatio="true" fitWidth="50">
+                        <Image url="@/media/Arrival.jpg"/>
+                    </ImageView>
+                    <Label text="RETURN" minWidth="200"/>
+                    <TextField fx:id="returnTextField"/>
+                    <DatePicker fx:id="returnDatePicker"/>
+                </HBox>
+                <Pane minHeight="20"/>
+                <Button fx:id="searchFlightsButton" text="Search for flights" minWidth="800" minHeight="50"/>
+            </VBox>
+
+            <ScrollPane fx:id="viewAccountPane" hbarPolicy="NEVER" vbarPolicy="NEVER">
+                <padding>
+                    <Insets top="20" left="20" right="20" bottom="20"/>
+                </padding>
+                <content>
+                    <VBox alignment="CENTER">
+                        <VBox>
+                            <Label text="Account Details" style="-fx-font-size: 15pt;"/>
+                            <Pane minHeight="10"/>
+                            <Label fx:id="accountNameLabel" style="-fx-font-size: 35pt; -fx-font-family: helvetica"/>
+                            <Separator minWidth="850"/>
+                            <Pane minHeight="20"/>
+                        </VBox>
+                        <HBox alignment="CENTER">
+                            <Button fx:id="logOutButton" text="Log Out" minWidth="850" minHeight="30"/>
+                        </HBox>
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </StackPane>
+    </center>
+    <bottom>
+        <HBox fx:id="footer" minWidth="700" minHeight="100">
+            <padding>
+                <Insets top="10" bottom="10" left="10" right="10"/>
+            </padding>
+            <VBox spacing="10">
+                <Label fx:id="statusLabel" text="Welcome to Magniflyer"/>
+                <Label text="Magniflyer helps you get the best flights by comparing all the available airlines into a single view. Enjoy your trip!"
+                       wrapText="true" maxWidth="400"/>
+            </VBox>
+        </HBox>
+    </bottom>
+</BorderPane>
