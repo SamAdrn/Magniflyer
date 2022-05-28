@@ -1,20 +1,29 @@
 package magniflyer.flight;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class AirlineMap {
 
     private final short COST_PER_MILE;
-    private final HashMap<String, HashMap<String, Integer>> FLIGHT_MAP;
-    private final HashMap<Integer, FlightData> FLIGHT_DATABASE;
+    private final Map<String, HashMap<String, Integer>> FLIGHT_MAP;
+    private final Map<Integer, FlightData> FLIGHT_DATABASE;
+    private final String NAME;
+    private final String PREFIX;
 
-    public AirlineMap(short costPerMile) {
+    public AirlineMap(short costPerMile, String name, String prefix) {
         COST_PER_MILE = costPerMile;
         FLIGHT_MAP = new HashMap<>();
         FLIGHT_DATABASE = new HashMap<>();
+        NAME = name;
+        PREFIX = prefix;
+    }
+
+    public String getNAME() {
+        return NAME;
+    }
+
+    public String getPrefix() {
+        return PREFIX;
     }
 
     private boolean verify(String dest) {
@@ -57,7 +66,7 @@ public class AirlineMap {
     }
 
     public boolean addRoute(String origin, String dest, short distance, int flight_no) {
-        if (distance > 0) {
+        if (distance > 0 && !verify(flight_no)) {
             if (verify(origin)) {
                 addDestination(origin);
             }
